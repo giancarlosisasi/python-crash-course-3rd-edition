@@ -1,4 +1,5 @@
 from pathlib import Path
+import json
 
 path = Path("pi_digits.txt")
 
@@ -36,3 +37,13 @@ def count_words(pathname):
 
 
 count_words(pathname="words.txt")
+
+numbers = [2, 3, 5, 7, 11, 13, {"hey": 2}]
+number_path_file = Path("numbers.json")
+contents = json.dumps(numbers)
+number_path_file.write_text(contents)
+
+contents = number_path_file.read_text()
+numbers = json.loads(contents)
+print(numbers)
+print(f"the first element is {numbers[0]}")
